@@ -28,22 +28,21 @@
     "persistent"
   ],
   "peerDependencies": {
-    "svelte": "^3.9.1"
+    "svelte": "^4.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.3",
     "chai": "^4.2.0",
-    "mocha": "^8.1.3",
+    "mocha": "^10.7.3",
     "nyc": "^15.1.0",
     "rollup": "^2.26.9",
-    "svelte": "^3.24.1",
+    "svelte": "^4.2.19",
     "ts-node": "^9.0.0",
     "tsup": "^3.11.0",
     "typescript": "^4.0.2"
   },
   "files": [
     "dist/**"
-  ],
-  "dependencies": {}
+  ]
 }
