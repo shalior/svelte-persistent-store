@@ -1,5 +1,16 @@
 import {writable as ogWritable, get as ogGet, Readable, Writable} from 'svelte/store';
-import {run_all, noop, is_function} from 'svelte/internal';
+
+function is_function(thing) {
+	return typeof thing === 'function';
+}
+
+const noop = () => {};
+
+export function run_all(arr) {
+	for (var i = 0; i < arr.length; i++) {
+		arr[i]();
+	}
+}
 
 /** Callback to inform of a value updates. */
 type Subscriber<T> = (value: T) => void;

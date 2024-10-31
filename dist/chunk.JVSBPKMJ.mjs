@@ -1,6 +1,15 @@
 // src/generator.ts
 import {writable as ogWritable, get as ogGet} from "svelte/store";
-import {run_all, noop, is_function} from "svelte/internal";
+function is_function(thing) {
+  return typeof thing === "function";
+}
+var noop = () => {
+};
+function run_all(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    arr[i]();
+  }
+}
 function isSimpleDeriver(deriver) {
   return deriver.length < 2;
 }

@@ -1,10 +1,10 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunk7ZQCSUGJjs = require('./chunk.7ZQCSUGJ.js');
+var _chunkJVSBPKMJjs = require('./chunk.JVSBPKMJ.js');
 
-// src/local.ts
-var storage = typeof window !== "undefined" ? window.localStorage : void 0;
-var g = _chunk7ZQCSUGJjs.generator.call(void 0, storage);
+// src/session.ts
+var storage = typeof window !== "undefined" ? window.sessionStorage : void 0;
+var g = _chunkJVSBPKMJjs.generator.call(void 0, storage);
 var readable = g.readable;
 var writable = g.writable;
 var derived = g.derived;

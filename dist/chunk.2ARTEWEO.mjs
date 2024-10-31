@@ -1,9 +1,9 @@
 import {
   generator
-} from "./chunk.7ZQCSUGJ.mjs";
+} from "./chunk.JVSBPKMJ.mjs";
 
-// src/local.ts
-var storage = typeof window !== "undefined" ? window.localStorage : void 0;
+// src/session.ts
+var storage = typeof window !== "undefined" ? window.sessionStorage : void 0;
 var g = generator(storage);
 var readable = g.readable;
 var writable = g.writable;

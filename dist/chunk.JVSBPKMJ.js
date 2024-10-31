@@ -1,6 +1,15 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/generator.ts
 var _store = require('svelte/store');
-var _internal = require('svelte/internal');
+function is_function(thing) {
+  return typeof thing === "function";
+}
+var noop = () => {
+};
+function run_all(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    arr[i]();
+  }
+}
 function isSimpleDeriver(deriver) {
   return deriver.length < 2;
 }
@@ -10,7 +19,7 @@ function generator(storage) {
       subscribe: writable(key, value, start).subscribe
     };
   }
-  function writable(key, value, start = _internal.noop) {
+  function writable(key, value, start = noop) {
     function wrap_start(ogSet) {
       return start(function wrap_set(new_value) {
         if (storage) {
@@ -35,7 +44,7 @@ function generator(storage) {
     function update(fn) {
       set(fn(_store.get.call(void 0, ogStore)));
     }
-    function subscribe(run, invalidate = _internal.noop) {
+    function subscribe(run, invalidate = noop) {
       return ogStore.subscribe(run, invalidate);
     }
     return {set, update, subscribe};
@@ -50,7 +59,7 @@ function generator(storage) {
       let inited = false;
       const values = [];
       let pending = 0;
-      let cleanup = _internal.noop;
+      let cleanup = noop;
       const sync = () => {
         if (pending) {
           return;
@@ -61,7 +70,7 @@ function generator(storage) {
           set(fn(input));
         } else {
           const result = fn(input, set);
-          cleanup = _internal.is_function.call(void 0, result) ? result : _internal.noop;
+          cleanup = is_function(result) ? result : noop;
         }
       };
       const unsubscribers = stores_array.map((store, i) => store.subscribe((value) => {
@@ -76,7 +85,7 @@ function generator(storage) {
       inited = true;
       sync();
       return function stop() {
-        _internal.run_all.call(void 0, unsubscribers);
+        run_all(unsubscribers);
         cleanup();
       };
     });
